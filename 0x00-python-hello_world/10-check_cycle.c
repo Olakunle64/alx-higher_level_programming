@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "lists.h"
 
 /**
@@ -10,16 +11,21 @@
 
 int check_cycle(listint_t *list)
 {
-	listint_t *current;
+	listint_t *leo;
+	listint_t *tort;
 
 	if (list == NULL)
 		return (0);
-	current = list;
-	while (current != NULL)
+	leo = list;
+	tort = list;
+	while (leo != NULL && tort != NULL)
 	{
-		current = current->next;
-		if (current == list)
+		leo = leo->next;
+		if (leo != NULL)
+			leo = leo->next;
+		if (leo == tort)
 			return (1);
+		tort = tort->next;
 	}
 	return (0);
 }
