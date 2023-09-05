@@ -12,4 +12,4 @@ def uppercase(str):
         if num in range(97, 123):
             num = num - 32
         full_string += chr(num)
-    print(full_string)
+    print("{}".format(full_string))
