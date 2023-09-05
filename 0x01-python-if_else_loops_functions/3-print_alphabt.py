@@ -2,4 +2,4 @@
 
 for ch in range(97, 123):
     if chr(ch) != 'q' and chr(ch) != 'e':
-        print(f"{chr(ch)}", end='')
+        print("{}".format(chr(ch)), end='')
