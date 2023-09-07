@@ -19,6 +19,6 @@ if __name__ == "__main__":
     elif sys.argv[2] == operator[1]:
         print("{} - {} = {}".format(a, b, calc.sub(a, b)))
     elif sys.argv[2] == operator[2]:
-        print("{} - {} = {}".format(a, b, calc.mul(a, b)))
+        print("{} * {} = {}".format(a, b, calc.mul(a, b)))
     elif sys.argv[2] == operator[3]:
-        print("{} - {} = {}".format(a, b, calc.div(a, b)))
+        print("{} / {} = {}".format(a, b, calc.div(a, b)))
