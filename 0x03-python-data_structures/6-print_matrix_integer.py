@@ -7,9 +7,7 @@ def print_matrix_integer(matrix=[[]]):
 
     Return: void
     """
-    i = 0
     for row in matrix:
         for col in row:
             print("{:d}".format(col), end=' ')
-        i += 1
         print()
