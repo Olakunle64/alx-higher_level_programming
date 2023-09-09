@@ -7,6 +7,8 @@ def print_matrix_integer(matrix=[[]]):
 
     Return: void
     """
+    if not matrix:
+        return
     for row in matrix:
         for col in row:
             print("{:d}".format(col), end=' ')
