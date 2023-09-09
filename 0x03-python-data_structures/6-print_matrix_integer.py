@@ -11,7 +11,7 @@ def print_matrix_integer(matrix=[[]]):
         return
     for row in matrix:
         if not row:
-            return
+            continue
         for col in row:
             print("{:d}".format(col), end=' ')
         print()
