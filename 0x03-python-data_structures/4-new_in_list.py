@@ -10,6 +10,8 @@ def new_in_list(my_list, idx, element):
     Return: return the new list without modifying
     my_list
     """
+    if my_list is None:
+        return None
     new_list = my_list[:]
     if idx < 0 or idx > len(my_list):
         return new_list
