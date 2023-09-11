@@ -7,7 +7,7 @@ def print_matrix_integer(matrix=[[]]):
 
     Return: void
     """
-    if not matrix:
+    if len(matrix) - 1 == 0:
         print()
     else:
         for row in matrix:
