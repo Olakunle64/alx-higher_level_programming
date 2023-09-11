@@ -9,10 +9,11 @@ def print_matrix_integer(matrix=[[]]):
     """
     if not matrix:
         print()
-        return
-    for row in matrix:
-        if not row:
-            continue
-        for col in row:
-            print("{:d}".format(col), end=' ')
-        print()
+    else:
+        for row in matrix:
+            i = 0
+            if not row:
+                continue
+            for col in row:
+                i += 1
+                print("{:d}".format(col), end=' ' if i != len(row) else '\n')
