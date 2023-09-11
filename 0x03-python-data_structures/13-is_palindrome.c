@@ -10,14 +10,9 @@
 listint_t *reverse_listint(listint_t **head)
 {
 	listint_t *prevnode, *current, *nextnode;
-
-	if (head == NULL || *head == NULL)
-		return (NULL);
 	prevnode = NULL;
 	current = *head;
 	nextnode = *head;
-	if (current->next == NULL)
-		return (*head);
 	while (nextnode != NULL)
 	{
 		nextnode = nextnode->next;
@@ -25,8 +20,8 @@ listint_t *reverse_listint(listint_t **head)
 		prevnode = current;
 		current = nextnode;
 	}
-	nextnode = prevnode;
-	return (nextnode);
+	*head = prevnode;
+	return (*head);
 }	
 	
 /**
@@ -39,20 +34,32 @@ listint_t *reverse_listint(listint_t **head)
 
 int is_palindrome(listint_t **head)
 {
-	listint_t *current, *replicate_node;
+	listint_t *current;
+	int arr[3000];
+	int i = 0;
 
 	if (head == NULL || *head == NULL)
 		return (1);
 	current = *head;
 	if (current->next == NULL)
 		return (1);
-	replicate_node = reverse_listint(head);
 	while (current != NULL)
 	{
-		if (current->n != replicate_node->n)
-			return (0);
+		arr[i] = current->n;
 		current = current->next;
+		i++;
+	}
+	i = 0;
+	*head = reverse_listint(head);
+	current = *head;
+	while (current != NULL)
+	{
+		if (current->n != arr[i])
+		{
+			return (0);
+		}
+		current = current->next;
+		i++;
 	}
 	return (1);
 }
-
