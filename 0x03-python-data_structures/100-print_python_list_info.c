@@ -10,17 +10,17 @@
 
 void print_python_list_info(PyObject *p)
 {
-	int list_size, allocated_space, count;
+	Py_ssize_t list_size, allocated_space, count;
 	PyObject *item;
 
 	list_size = PyList_Size(p);
 	allocated_space = ((PyListObject *)p)->allocated;
-	printf("[*] Size of the Python List = %d", list_size);
-	printf("[*] Allocated = %d", allocated_space);
+	printf("[*] Size of the Python List = %ld", list_size);
+	printf("[*] Allocated = %ld", allocated_space);
 
-	for (i = 0; i < size; i++)
+	for (count = 0; count < size; count++)
 	{
-		item = PyList_GET_ITEM(p, i);
-		printf("Element %d: %s", i, py_TYPE(item)->ob_type);
+		item = PyList_GET_ITEM(p, count);
+		printf("Element %ld: %s", count, Py_TYPE(item)->ob_type);
 	}
 }
