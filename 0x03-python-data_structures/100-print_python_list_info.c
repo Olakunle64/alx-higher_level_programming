@@ -15,12 +15,12 @@ void print_python_list_info(PyObject *p)
 
 	list_size = PyList_Size(p);
 	allocated_space = ((PyListObject *)p)->allocated;
-	printf("[*] Size of the Python List = %ld", list_size);
-	printf("[*] Allocated = %ld", allocated_space);
+	printf("[*] Size of the Python List = %ld\n", list_size);
+	printf("[*] Allocated = %ld\n", allocated_space);
 
 	for (count = 0; count < list_size; count++)
 	{
 		item = PyList_GET_ITEM(p, count);
-		printf("Element %ld: %s", count, Py_TYPE(item)->tp_name);
+		printf("Element %ld: %s\n", count, Py_TYPE(item)->tp_name);
 	}
 }
