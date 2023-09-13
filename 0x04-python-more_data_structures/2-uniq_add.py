@@ -10,5 +10,6 @@ def uniq_add(my_list=[]):
     if my_list == []:
         return None
     empty_set = set()
-    new_unique_list = [empty_set.add(num) for num in my_list]
+    for num in my_list:
+        empty_set.add(num)
     return sum(empty_set)
