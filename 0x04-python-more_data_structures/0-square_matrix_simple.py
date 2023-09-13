@@ -7,7 +7,7 @@ def square_matrix_simple(matrix=[]):
 
     Return: return a new matrix
     """
-    if not matrix:
+    if matrix == []:
         return None
     new_matrix = [[col ** 2 for col in row] for row in matrix if row]
     return new_matrix

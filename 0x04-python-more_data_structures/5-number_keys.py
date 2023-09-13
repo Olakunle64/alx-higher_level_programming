@@ -7,4 +7,4 @@ def number_keys(a_dictionary):
 
     Return: the number of key(s)
     """
-    return(len(a_dictionary.keys()))
+    return (len(a_dictionary.keys()))

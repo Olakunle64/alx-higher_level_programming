@@ -8,4 +8,4 @@ def common_elements(set_1, set_2):
 
     Return: new set with common element
     """
-    return (set_1  & set_2)
+    return (set_1 & set_2)

@@ -7,7 +7,7 @@ def best_score(a_dictionary):
 
     Return: the key with the biggest value
     """
-    if a_dictionary == None:
+    if a_dictionary is None:
         return None
     _max = max(a_dictionary.values())
     for key in a_dictionary.keys():

@@ -9,7 +9,7 @@ def search_replace(my_list, search, replace):
 
     Return: return the new list
     """
-    if not my_list:
+    if my_list == None:
         return None
     new_list = my_list[:]
     for i in range(len(new_list)):
