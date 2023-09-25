@@ -13,13 +13,13 @@ def magic_calculation(a, b):
     for i in range(1, 3):
         try:
             result = a + b
-        except:
+        except Exception:
             if i > a:
                 raise Exception('Too far')
             else:
                 result = a ** b
                 result /= result
-            break;
+            break
         finally:
             result = a + b
     return result
