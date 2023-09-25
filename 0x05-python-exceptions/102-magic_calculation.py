@@ -10,16 +10,13 @@ def magic_calculation(a, b):
     Return: void
     """
     result = 0
-    for i in range(1, 3):
+    for i in range(1, 4):
         try:
-            result = a + b
-        except Exception:
             if i > a:
                 raise Exception('Too far')
-            else:
-                result = a ** b
-                result /= result
-            break
-        finally:
+            result = a ** b
+            result /= result
+        except Exception:
             result = a + b
+            break
     return result
