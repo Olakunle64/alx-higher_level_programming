@@ -15,9 +15,9 @@ class Square:
     end
 
     """
-    def __init__(self, size = 0):
+    def __init__(self, size=0):
         """Initializing self as a private attribute
-        
+
         Args:
             size: an integer(ensure it is an integer and also
             it must not be less than 0)
