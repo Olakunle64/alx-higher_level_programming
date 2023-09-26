@@ -2,6 +2,8 @@
 class Square:
     """This class that does nothing
 
-    Attributes: it has no attribute
+    Attributes:
+
+        it has no attribute
     """
     pass
