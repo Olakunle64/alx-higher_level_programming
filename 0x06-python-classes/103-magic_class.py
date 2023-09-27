@@ -1,12 +1,5 @@
 #!/usr/bin/python3
 
-import math
-"""This module is imported to make use of the
-    pi function in it.
-
-    pi: is just like 22 / 7
-    """
-
 """This file contains class called MagicClass
 
     It has 3 methods and one field attribute
