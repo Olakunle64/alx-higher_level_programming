@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """This file contains two classes
-    
+
     Aim: to implement the singly linked list
     """
+
+
 class Node:
     """The class is just like a node that has a
     data and a pointer to the nextnode
@@ -40,6 +42,7 @@ class Node:
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
+
 class SinglyLinkedList:
     """This class is meant to insert a node in a list and also
     define what would happen when the class is called with a print
@@ -64,7 +67,8 @@ class SinglyLinkedList:
             self.__head = newnode
         else:
             current = self.__head
-            while current.next_node is not None and current.next_node.data < value:
+            while (current.next_node is not None and
+            current.next_node.data < value):
                 current = current.next_node
             newnode.next_node = current.next_node
             current.next_node = newnode
@@ -79,5 +83,3 @@ class SinglyLinkedList:
             result.append(str(current.data))
             current = current.next_node
         return "\n".join(result)
-
-
