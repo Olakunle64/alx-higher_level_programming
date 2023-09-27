@@ -2,6 +2,10 @@
 """This file contains class called MagicClass
 
     It has 3 methods and one field attribute
+
+    The methods include area, circumference.
+
+    end
     """
 
 
