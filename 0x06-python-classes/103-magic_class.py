@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+import math
+"""This module is imported to be able to use
+    the pi function in it
+    """
+
+
 """This file contains class called MagicClass
 
     It has 3 methods and one field attribute
