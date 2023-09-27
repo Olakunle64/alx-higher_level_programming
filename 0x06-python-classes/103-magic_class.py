@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """This file contains class called MagicClass
-    
+
     It has 3 methods and one field attribute
     """
 
@@ -19,7 +19,7 @@ class MagicClass:
         if type(radius) is not int:
             if type(radius) is not float:
                 raise TypeError("radius must be a number")
-        self.__radius = radius
+            self.__radius = radius
 
     def area(self):
         """return the area of of the radius"""
