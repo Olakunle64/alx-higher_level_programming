@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """This file contains class called MagicClass
 
     It has 3 methods and one field attribute
