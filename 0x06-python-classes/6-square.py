@@ -51,7 +51,8 @@ class Square:
     @position.setter
     def position(self, value):
         """a setter to set the private attribute position"""
-        if not isinstance(value, tuple) or value[0] < 0 or value[1] < 0:
+        if not isinstance(value, tuple) or len(value) != 2 or not all(isinstance(x,
+            int) and x >= 0 for x in value):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
@@ -62,6 +63,8 @@ class Square:
     def my_print(self):
         """print a square with character <#> to stdout"""
         if self.__size == 0:
+            print()
+        for l in range(self.__position[1]):
             print()
         for i in range(self.__size):
             for k in range(self.__position[0]):
