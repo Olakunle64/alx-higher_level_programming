@@ -68,6 +68,7 @@ class Square:
         """print a square with character <#> to stdout"""
         if self.__size == 0:
             print()
+            return
         for yaxis in range(self.__position[1]):
             print()
         for i in range(self.__size):
