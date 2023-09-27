@@ -18,7 +18,7 @@ class MagicClass:
         circumference: third method
     """
 
-    def __init__(self, radius):
+    def __init__(self, radius=0):
         """initializing radius"""
         self.__radius = 0
         if type(radius) is not int:
