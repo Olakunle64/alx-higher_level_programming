@@ -1,9 +1,4 @@
 #!/usr/bin/python3
-import math
-"""This is a math module imported
-    to have access to the pi function
-    """
-
 """This file contains class called MagicClass
 
     It has 3 methods and one field attribute
@@ -28,9 +23,7 @@ class MagicClass:
         if type(radius) is not int:
             if type(radius) is not float:
                 raise TypeError("radius must be a number")
-            self.__radius = radius
-        else:
-            self.__radius = float(radius)
+        self.__radius = radius
 
     def area(self):
         """return the area of of the radius"""
