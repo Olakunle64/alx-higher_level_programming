@@ -1,10 +1,4 @@
 #!/usr/bin/python3
-import math
-"""This module is imported to be able to use
-    the pi function in it
-    """
-
-
 """This file contains class called MagicClass
 
     It has 3 methods and one field attribute
@@ -31,8 +25,8 @@ class MagicClass:
 
     def area(self):
         """return the area of of the radius"""
-        return (self.__radius ** 2) * math.pi
+        return float(self.__radius ** 2) * math.pi)
 
     def circumference(self):
         """return the circumference of the radius"""
-        return 2 * math.pi * self.__radius
+        return float(2 * math.pi * self.__radius)
