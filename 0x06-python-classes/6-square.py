@@ -47,7 +47,7 @@ class Square:
     def position(self):
         """a getter to get the value of the private attribute"""
         return self.__position
-    
+
     @position.setter
     def position(self, value):
         """a setter to set the private attribute position"""
@@ -64,9 +64,8 @@ class Square:
         if self.__size == 0:
             print()
         for i in range(self.__size):
-            if not self.__position[1]:
-                for k in range(self.__position[0]):
-                    print(' ', end='')
+            for k in range(self.__position[0]):
+                print(' ', end='')
             for j in range(self.__size):
                 print('#', end='')
             print()
