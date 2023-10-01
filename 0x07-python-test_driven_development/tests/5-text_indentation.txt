@@ -1,0 +1,59 @@
+This file contains the test cases for the function <text_indentation>
+
+Import <text_indentation> from 5-text_indentation
+	>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+The following are the test cases for the function:
+	>>> text_indentation(2)
+	Traceback (most recent call last):
+		...
+	TypeError: text must be a string
+	>>> text_indentation((2, 3))
+        Traceback (most recent call last):
+                ...
+        TypeError: text must be a string
+	>>> text_indentation([2, 3])
+        Traceback (most recent call last):
+                ...
+        TypeError: text must be a string
+	>>> text_indentation(2.2)
+        Traceback (most recent call last):
+                ...
+        TypeError: text must be a string
+	>>> text_indentation("")
+	<BLANKLINE>
+	>>> text_indentation(None)
+        Traceback (most recent call last):
+                ...
+        TypeError: text must be a string
+	>>> text_indentation("I am a graduate")
+        I am a graduate
+	>>> text_indentation("I am a graduate.")
+        I am a graduate.
+	<BLANKLINE>
+	>>> text_indentation("I am a? graduate")
+        I am a?
+	<BLANKLINE>
+	graduate
+	>>> text_indentation("I am: a graduate")
+        I am:
+	<BLANKLINE>
+	a graduate
+	>>> text_indentation("I. am? a: graduate")
+        I.
+	<BLANKLINE>
+	am?
+	<BLANKLINE>
+	a:
+	<BLANKLINE>
+	graduate
+	>>> text_indentation("I. am? ?a: graduate")
+        I.
+        <BLANKLINE>
+        am?
+        <BLANKLINE>
+	?
+	<BLANKLINE>
+        a:
+        <BLANKLINE>
+        graduate
