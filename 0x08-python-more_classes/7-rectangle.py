@@ -80,7 +80,7 @@ class Rectangle:
             return ""
         new_string = []
         for i in range(self.__height):
-            new_string.append(str(self.print_symbol * self.__width))
+            new_string.append(str(str(self.print_symbol) * self.__width))
             if i != self.__height - 1:
                 new_string.append(str("\n"))
         return "".join(new_string)
