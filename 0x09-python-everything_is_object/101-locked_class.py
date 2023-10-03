@@ -12,5 +12,5 @@ class LockedClass:
         """set a constant attribute"""
         if name != "first_name":
             raise AttributeError(
-            "'LockedClass' object has no attribute '{}'".format(name)
-            )
+                "'LockedClass' object has no attribute '{}'".format(name)
+                )
