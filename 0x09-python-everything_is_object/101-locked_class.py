@@ -10,6 +10,10 @@ class LockedClass:
 
     def __setattr__(self, name, value):
         """set a constant attribute"""
+        if name == "dict":
+            raise AttributeError(
+                "'LockedClass' object has no attribute '{}'".format('__dict__')
+                )
         if name != "first_name":
             raise AttributeError(
                 "'LockedClass' object has no attribute '{}'".format(name)
