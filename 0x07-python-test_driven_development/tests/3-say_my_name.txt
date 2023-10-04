@@ -38,7 +38,7 @@ The following are the test cases for the function:
 	My name is salau isiaq
 
 	>>> say_my_name("salau")
-	My name is salau
+	My name is salau 
 
 	>>> say_my_name("", "isiaq")
 	My name is isiaq
@@ -60,3 +60,6 @@ The following are the test cases for the function:
         Traceback (most recent call last):
                 ...
         TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+	
+	>>> say_my_name("Bob")
+        My name is Bob 
