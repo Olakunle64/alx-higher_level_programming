@@ -7,6 +7,8 @@
     print_square(4)
     result:
     """
+
+
 def print_square(size):
     """print a square with the character #
 
@@ -15,6 +17,7 @@ def print_square(size):
 
     Return: void.
     """
+
     if isinstance(size, float) and size < 0:
         raise TypeError("size must be an integer")
     if not isinstance(size, int):
@@ -25,4 +28,4 @@ def print_square(size):
         print()
     else:
         for i in range(size):
-            print("#" * size, end = '' if i == size - 1 else '\n')
+            print("#" * size)

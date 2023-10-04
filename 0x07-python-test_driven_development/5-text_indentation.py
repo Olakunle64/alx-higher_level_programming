@@ -7,6 +7,8 @@
     text_indentation("I am a graduate")
     result: I am a graduate
     """
+
+
 def text_indentation(text):
     """print a text with 2 newlines after each of these
         characters: . ? :
@@ -16,19 +18,24 @@ def text_indentation(text):
 
     Return: void
     """
+
     if not isinstance(text, str):
         raise TypeError("text must be a string")
     if not text:
         print()
     i = 0
-    while i < len(text):
-        if text[i] == '.' or text[i] == ':' or text[i] == '?':
-            print(text[i], end='')
-            print('\n')
-            if i + 1 < len(text) and text[i + 1] == ' ':
-                    i = i + 2
-            else:
-                i = i + 1
+    cpy_text = text.strip()
+    puntuation = [".", ":", "?"]
+    while i < len(cpy_text):
+        if cpy_text[i] not in puntuation:
+            print(cpy_text[i], end='')
+            i += 1
             continue
-        print(text[i], end='')
-        i = i + 1
+        else:
+            print(cpy_text[i], end='')
+            print('\n')
+            i += 1
+            while i < len(cpy_text) and cpy_text[i] == ' ':
+                i += 1
+            if i < len(cpy_text) and cpy_text[i] == ' ':
+                i += 1

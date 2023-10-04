@@ -7,6 +7,8 @@
     matrix_divided([[2, 3], [4, 5]], 2)
     result:
     """
+
+
 def matrix_divided(matrix, div):
     """divides all the elements of a matrix
 
@@ -16,21 +18,23 @@ def matrix_divided(matrix, div):
 
     Return: return a new matrix
     """
+
+    err_msg = "matrix must be a matrix (list of lists) of integers/floats"
     new_list = []
-    if matrix is None:
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+    if matrix is None or matrix == []:
+        raise TypeError(err_msg)
     if not isinstance(matrix, list) or not isinstance(matrix[0], list):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError(err_msg)
     row_length = len(matrix[0])
     for row in matrix:
         sub_list = []
         if not isinstance(row, list) or row == []:
-            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+            raise TypeError(err_msg)
         if len(row) != row_length:
             raise TypeError("Each row of the matrix must have the same size")
         for col in row:
             if type(col) not in [int, float]:
-                raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+                raise TypeError(err_msg)
             if type(div) not in [int, float]:
                 raise TypeError("div must be a number")
             if div == 0:
@@ -42,7 +46,3 @@ def matrix_divided(matrix, div):
                 sub_list.append(result)
         new_list.append(sub_list)
     return new_list
-
-
-
-        

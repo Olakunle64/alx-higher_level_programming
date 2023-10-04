@@ -1,15 +1,15 @@
 This file contains the test cases for the function <matrix_mul>
 
 Import <matrix_mul> from 100-matrix_mul
-	>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+	>>> matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
 
 Checking for module docstring:
-        >>> m = __import__('100-matrix_mul').__doc__
+        >>> m = __import__('101-lazy_matrix_mul').__doc__
         >>> len(m) > 1
         True
 
 Checking for function docstring:
-        >>> m = __import__('100-matrix_mul').matrix_mul.__doc__
+        >>> m = __import__('101-lazy_matrix_mul').lazy_matrix_mul.__doc__
         >>> len(m) > 1
         True
 

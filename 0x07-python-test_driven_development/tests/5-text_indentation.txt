@@ -3,42 +3,62 @@ This file contains the test cases for the function <text_indentation>
 Import <text_indentation> from 5-text_indentation
 	>>> text_indentation = __import__('5-text_indentation').text_indentation
 
+Checking for module docstring:
+        >>> m = __import__('5-text_indentation').__doc__
+        >>> len(m) > 1
+        True
+
+Checking for function docstring:
+        >>> m = __import__('5-text_indentation').text_indentation.__doc__
+        >>> len(m) > 1
+        True
+
 The following are the test cases for the function:
 	>>> text_indentation(2)
 	Traceback (most recent call last):
 		...
 	TypeError: text must be a string
+
 	>>> text_indentation((2, 3))
         Traceback (most recent call last):
                 ...
         TypeError: text must be a string
+
 	>>> text_indentation([2, 3])
         Traceback (most recent call last):
                 ...
         TypeError: text must be a string
+
 	>>> text_indentation(2.2)
         Traceback (most recent call last):
                 ...
         TypeError: text must be a string
+
 	>>> text_indentation("")
 	<BLANKLINE>
+
 	>>> text_indentation(None)
         Traceback (most recent call last):
                 ...
         TypeError: text must be a string
+
 	>>> text_indentation("I am a graduate")
         I am a graduate
+
 	>>> text_indentation("I am a graduate.")
         I am a graduate.
 	<BLANKLINE>
+
 	>>> text_indentation("I am a? graduate")
         I am a?
 	<BLANKLINE>
 	graduate
+
 	>>> text_indentation("I am: a graduate")
         I am:
 	<BLANKLINE>
 	a graduate
+
 	>>> text_indentation("I. am? a: graduate")
         I.
 	<BLANKLINE>
@@ -47,6 +67,7 @@ The following are the test cases for the function:
 	a:
 	<BLANKLINE>
 	graduate
+
 	>>> text_indentation("I. am? ?a: graduate")
         I.
         <BLANKLINE>
@@ -57,3 +78,28 @@ The following are the test cases for the function:
         a:
         <BLANKLINE>
         graduate
+
+	>>> text_indentation([5])
+        Traceback (most recent call last):
+                ...
+        TypeError: text must be a string
+
+	>>> text_indentation("     show love    ")
+	show love
+
+	>>> text_indentation("      in between?       spaces  ")
+	in between?
+	<BLANKLINE>
+	spaces
+
+	>>> text_indentation("      in between??       spaces  ")
+        in between?
+        <BLANKLINE>
+	?
+	<BLANKLINE>
+        spaces
+
+	>>> text_indentation()
+	Traceback (most recent call last):
+		...
+	TypeError: text_indentation() missing 1 required positional argument: 'text'
