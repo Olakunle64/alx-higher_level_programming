@@ -93,3 +93,8 @@ The following are the test cases:
 
 	>>> add_integer(2222222222222222222222222, 9999999999999999999999999)
 	12222222222222222222222221
+
+	>>> add_integer(1.0e308 * 10, 1.0e29)
+        Traceback (most recent call last):
+		...
+	OverflowError: cannot convert float infinity to integer
