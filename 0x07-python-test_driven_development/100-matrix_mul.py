@@ -52,7 +52,7 @@ def matrix_mul(m_a, m_b):
         continous = 0
         k = 0
         sub_list = []
-        while continous < len(row):
+        while continous < m_b_row_length:
             i = 0
             j = 0
             result = 0
