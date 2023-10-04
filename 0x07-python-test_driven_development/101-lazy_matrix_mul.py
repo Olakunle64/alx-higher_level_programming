@@ -20,5 +20,6 @@ def lazy_matrix_mul(m_a, m_b):
     """
     matrix_a = numpy.array(m_a)
     matrix_b = numpy.array(m_b)
-    result = numpy.dot(matrix_a, matrix_b)
-    return result
+    result = matrix_a @ matrix_b
+    result_to_list = result.tolist()
+    return result_to_list
