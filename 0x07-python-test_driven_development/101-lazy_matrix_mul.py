@@ -18,8 +18,10 @@ def lazy_matrix_mul(m_a, m_b):
     Return: the a new list containing the
     multiplication of the two matrices
     """
-    matrix_a = numpy.array(m_a)
-    matrix_b = numpy.array(m_b)
+    try:
+        matrix_a = numpy.array(m_a)
+        matrix_b = numpy.array(m_b)
+    except Exception as errmsg:
+        raise Exception(errmsg)
     result = matrix_a @ matrix_b
-    result_to_list = result.tolist()
-    return result_to_list
+    return result.tolist()
