@@ -57,7 +57,7 @@ The following are the test cases for the function:
 	>>> lazy_matrix_mul([[2, 3], [2, 3]], ['h', [3, 2]])
         Traceback (most recent call last):
                 ...
-        ValueError: setting an array element with a sequence
+        Exception: setting an array element with a sequence
 
 	>>> lazy_matrix_mul([[2, 3], [2, 3]], [])
         Traceback (most recent call last):
@@ -92,12 +92,12 @@ The following are the test cases for the function:
 	>>> lazy_matrix_mul([[2, 3], [4, 5]], [[2, 3], [1, (2, 3)]])
         Traceback (most recent call last):
                 ...
-        ValueError: setting an array element with a sequence.
+        Exception: setting an array element with a sequence.
 
 	>>> lazy_matrix_mul([[2, 3], [1, (4, 5)]], [[2, 3], [2, 3]])
         Traceback (most recent call last):
                 ...
-        ValueError: setting an array element with a sequence.
+        Exception: setting an array element with a sequence.
 
 	>>> lazy_matrix_mul([[2, 3], [1, 4, 5]], [[2, 3], [2, 3]])
         Traceback (most recent call last):
