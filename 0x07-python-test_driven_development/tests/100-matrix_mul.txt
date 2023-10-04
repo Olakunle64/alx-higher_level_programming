@@ -152,3 +152,6 @@ The following are the test cases for the function:
         Traceback (most recent call last):
                 ...
         TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
+
+	>>> matrix_mul([[1, 2], [3, 4], [3, 4]], [[5, 6, 1], [7, 8, 2]])
+	[[19, 22, 5], [43, 50, 11], [43, 50, 11]]
