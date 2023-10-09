@@ -44,3 +44,9 @@ The following are the test cases for the class:
         ValueError: score must be greater than 0
 
 	>>> circle.integer_validator("kunle", 2)
+
+	>>> a = object()
+	>>> circle.integer_validator("kunle", a)
+        Traceback (most recent call last):
+                ...
+        TypeError: kunle must be an integer
