@@ -50,3 +50,12 @@ The following are the test cases for the class:
         Traceback (most recent call last):
                 ...
         TypeError: kunle must be an integer
+
+	>>> class int_inherit(int):
+	...	pass
+
+	>>> a = int_inherit("23")
+	>>> circle.integer_validator("GPA", a)
+	Traceback (most recent call last):
+                ...
+        TypeError: GPA must be an integer
