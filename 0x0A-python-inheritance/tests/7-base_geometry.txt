@@ -21,26 +21,26 @@ The following are the test cases for the class:
 	>>> circle.integer_validator("kunle", "2")
 	Traceback (most recent call last):
 		...
-	TypeError: <name> must be an integer
+	TypeError: kunle must be an integer
 
-	>>> circle.integer_validator("kunle", [1, 2, 3])
+	>>> circle.integer_validator("name", [1, 2, 3])
         Traceback (most recent call last):
                 ...
-        TypeError: <name> must be an integer
+        TypeError: name must be an integer
 
 	>>> circle.integer_validator("kunle", 2.3)
         Traceback (most recent call last):
                 ...
-        TypeError: <name> must be an integer
+        TypeError: kunle must be an integer
 
-	>>> circle.integer_validator("kunle", 0)
+	>>> circle.integer_validator("cgpa", 0)
         Traceback (most recent call last):
                 ...
-        ValueError: <name> must be greater than 0
+        ValueError: cgpa must be greater than 0
 
-	>>> circle.integer_validator("kunle", -2)
+	>>> circle.integer_validator("score", -2)
         Traceback (most recent call last):
                 ...
-        ValueError: <name> must be greater than 0
+        ValueError: score must be greater than 0
 
 	>>> circle.integer_validator("kunle", 2)
