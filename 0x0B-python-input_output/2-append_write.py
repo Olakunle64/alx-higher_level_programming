@@ -4,6 +4,8 @@
     Here is the guide to use the function:
     append_write(filename, text)
     """
+
+
 def append_write(filename="", text=""):
     """append a string at the end of a text file
 
