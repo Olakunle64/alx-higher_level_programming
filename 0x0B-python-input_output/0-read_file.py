@@ -11,4 +11,4 @@ def read_file(filename=""):
     with open(filename, "r", encoding="utf-8") as file_object:
         text_read = file_object.read()
         text_to_print = text_read[:len(text_read) - 1]
-        print(text_to_print)
+        print(text_to_print, end='' if len(text_to_print) == 0 else '\n')
