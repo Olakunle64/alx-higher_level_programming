@@ -13,8 +13,9 @@ while i < len(sys.argv):
     new_list.append(sys.argv[i])
     i += 1
 if not os.path.isfile("add_item.json"):
-    save_to_json_file(new_list, "add_item.json")
+    my_list = new_list[:]
+else:
+    my_list = load_from_json_file("add_item.json")
+    my_list.extend(new_list)
 
-my_list = load_from_json_file("add_item.json")
-my_list.extend(new_list)
 save_to_json_file(my_list, "add_item.json")
