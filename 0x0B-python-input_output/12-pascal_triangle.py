@@ -13,25 +13,25 @@ def pascal_triangle(n):
     Args:
         n: an integer
     """
-    big_list = []
+    pascal_tr = []
     if n <= 0:
-        return big_list
+        return pascal_tr
     if n >= 1:
-        big_list = [[1]]
+        pascal_tr.append([1])
     if n >= 2:
-        big_list.append([1, 1])
-    i = 2
-    j = 0
-    while n > 2:
-        new_list = []
-        new_list.append(1)
-        while j < len(big_list[i]):
-            if len(new_list) < len(big_list[i]):
-                new_list.append(big_list[i][j] + big_list[i][j + 1])
-            j += 1
-        new_list.append(1)
-        j = 0
-        big_list.append(new_list)
-        n -= 1
-        i += 1
-    return big_list
+        pascal_tr.append([1, 1])
+    temp = 1
+    while temp <= n - 2 and n > 2:
+        sub_pascal = []
+        i = 0
+        while i < len(pascal_tr[temp]):
+            result = pascal_tr[temp][i] + pascal_tr[temp][i + 1]
+            sub_pascal.append(result)
+            i += 1
+            if i + 1 == len(pascal_tr[temp]):
+                break
+        sub_pascal.insert(0, 1)
+        sub_pascal.insert(len(sub_pascal), 1)
+        pascal_tr.append(sub_pascal)
+        temp += 1
+    return pascal_tr
