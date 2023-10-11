@@ -3,6 +3,7 @@
     to a python list and then save them to a file
     """
 
+import json
 import sys
 save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
@@ -13,5 +14,6 @@ while i < len(sys.argv):
     new_list.append(sys.argv[i])
     i += 1
 save_to_json_file(new_list, "add_item.json")
+with open("add_item.json", "a", encoding="utf-8") as file_object:
+        file_object.write('\n')
 added_item = load_from_json_file("add_item.json")
-print(added_item)
