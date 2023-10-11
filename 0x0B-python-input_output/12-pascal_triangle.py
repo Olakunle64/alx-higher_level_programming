@@ -4,6 +4,8 @@
     Here is the guide to use it:
     pascal_triangle(n)
     """
+
+
 def pascal_triangle(n):
     """return a list of list of integrs representing the
     pascal's triangle of n
@@ -33,5 +35,3 @@ def pascal_triangle(n):
         n -= 1
         i += 1
     return big_list
-
-
