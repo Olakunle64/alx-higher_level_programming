@@ -38,4 +38,3 @@ class Student:
         if hasattr(self, "__dict__") and isinstance(json, dict):
             for key, value in json.items():
                 setattr(self, key, value)
-
