@@ -14,4 +14,3 @@ while i < len(sys.argv):
     new_list.append(sys.argv[i])
     i += 1
 save_to_json_file(new_list, "add_item.json")
-added_item = load_from_json_file("add_item.json")
