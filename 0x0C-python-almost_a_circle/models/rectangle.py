@@ -21,11 +21,12 @@ class Rectangle(Base):
     """
     def __init__(self, width, height, x=0, y=0, id=None):
         """initializing the private attribute"""
+        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
         self.y = y
-        super().__init__(id)
+        #super().__init__(id)
 
     @property
     def width(self):
@@ -89,5 +90,14 @@ class Rectangle(Base):
 
     def display(self):
         """print a rectangle with #"""
+        print("\n" * self.__y, end='')
         for i in range(self.__height):
+            print(" " * self.__x, end='')
             print("#" * self.__width)
+
+    def __str__(self):
+        """string implementation"""
+        return str("[Rectangle] (" + str(self.id) + ") " + str(self.__x)
+                + "/" + str(self.__y) + " - "
+                + str(self.__width) + "/" + str(self.__height)
+                )
