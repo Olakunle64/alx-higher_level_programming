@@ -101,3 +101,39 @@ class Rectangle(Base):
                 + "/" + str(self.__y) + " - "
                 + str(self.__width) + "/" + str(self.__height)
                 )
+
+    def update(self, *args, **kwargs):
+        """assign each element of args to the instance attribute"""
+        i = 0
+        flag = 0
+        for arg in args:
+            if i == 0:
+                self.id = arg
+                flag = 1
+            elif i == 1:
+                self.__width = arg
+            elif i == 2:
+                self.__height = arg
+            elif i == 3:
+                self.__x = arg
+            elif i == 4:
+                self.__y = arg
+            else:
+                break
+            i += 1
+        if not flag:
+            i = 0
+            for key in kwargs.keys():
+                if key == "id":
+                    self.id = kwargs[key]
+                elif key == "width":
+                    self.__width = kwargs[key]
+                elif key == "height":
+                    self.__height = kwargs[key]
+                elif key == "x":
+                    self.__x = kwargs[key]
+                elif key == "y":
+                    self.__y = kwargs[key]
+                i += 1
+                if i > 4:
+                    break
