@@ -189,3 +189,14 @@ class Test_Rectangle(unittest.TestCase):
         r1.update(89, id=9, width=16, height=15)
         expected_output = "[Rectangle] (89) 12/13 - 10/11\n"
         self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+
+    def test_obj_to_dict(self):
+        r1 = Rectangle(1, 2, id=8)
+        expected_output = "[Rectangle] (8) 0/0 - 1/2\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        r1_dict = r1.to_dictionary()
+        r2 = Rectangle(**r1_dict)
+        expected_output = "[Rectangle] (8) 0/0 - 1/2\n"
+        self.assertEqual(Test_Rectangle.p_str(r2), expected_output)
+        self.assertNotEqual(r1, r2)
+        
