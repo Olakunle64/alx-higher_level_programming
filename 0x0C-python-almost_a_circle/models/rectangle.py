@@ -137,3 +137,23 @@ class Rectangle(Base):
                 i += 1
                 if i > 4:
                     break
+
+    def to_dictionary(self):
+        """return the dictionary representation of rectangle"""
+        obj_dict = self.__dict__.copy()
+        i = 0
+        for key in obj_dict:
+            if key == "size":
+                i += 1
+            elif key == "id":
+                i += 1
+            elif key == "x":
+                i += 1
+            elif key == "y":
+                i += 1
+            else:
+                break
+        if i == 4:
+            return obj_dict
+        else:
+            return None

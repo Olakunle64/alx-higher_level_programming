@@ -38,6 +38,41 @@ class Square(Rectangle):
         self.height = value
 
     def __str__(self):
+        """string implementation of square"""
         return ("[Square] (" + str(self.id) + ") "
-                + str(self.x) + "/" + str(self.y) + " - " + str(self.width)
+                + str(self.x) + "/" + str(self.y) + " - " + str(self.size)
                 )
+
+    def update(self, *args, **kwargs):
+        """if args exists, assign the value(s) to square attribute
+        otherwise assign the value(s) of kwargs
+        """
+        i = 0
+        flag = 0
+        for arg in args:
+            if i == 0:
+                self.id = arg
+                flag = 1
+            elif i == 1:
+                self.size = arg
+            elif i == 2:
+                self.x = arg
+            elif i == 3:
+                self.y = arg
+            else:
+                break
+            i += 1
+        if not flag:
+            i = 0
+            for key in kwargs.keys():
+                if key == "id":
+                    self.id = kwargs[key]
+                elif key == "size":
+                    self.size = kwargs[key]
+                elif key == "x":
+                    self.x = kwargs[key]
+                elif key == "y":
+                    self.y = kwargs[key]
+                i += 1
+                if i > 4:
+                    break

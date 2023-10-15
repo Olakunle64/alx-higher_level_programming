@@ -20,8 +20,8 @@ class Test_Rectangle(unittest.TestCase):
             r1 = Rectangle()
         with self.assertRaises(TypeError):
             r2 = Rectangle(2)
-        r3 = Rectangle(2, 4)
-        #self.assertEqual(r3.id, 1)
+        r3 = Rectangle(2, 4, id=1)
+        self.assertEqual(r3.id, 1)
         self.assertEqual(r3.x, 0)
         r3.x = 32
         self.assertEqual(r3.x, 32)
@@ -34,7 +34,7 @@ class Test_Rectangle(unittest.TestCase):
         self.assertEqual(r3.height, 4)
         r3.height = 13
         self.assertEqual(r3.height, 13)
-        r4 = Rectangle(5, 9)
+        r4 = Rectangle(5, 9, id=2)
         self.assertEqual(r4.id, 2)
 
     def test_b_complete_args(self):
