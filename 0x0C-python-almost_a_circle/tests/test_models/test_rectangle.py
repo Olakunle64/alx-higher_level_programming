@@ -2,8 +2,6 @@
 """This module contains the testcases for the class
     called <Rectangle>
     """
-
-
 import json
 from models.rectangle import Rectangle
 import unittest
@@ -127,7 +125,7 @@ class Test_Rectangle(unittest.TestCase):
 
     @staticmethod
     def p_str(obj):
-        """test the display of the rectangle"""
+        """capture anything printed to stdout"""
         with StringIO() as output:
             former_output = sys.stdout
             sys.stdout = output

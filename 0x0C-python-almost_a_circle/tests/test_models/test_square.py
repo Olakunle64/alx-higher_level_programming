@@ -2,8 +2,6 @@
 """This module contains the testcases for the class
     called <Square>
     """
-
-
 from models.square import Square
 import unittest
 from io import StringIO
@@ -73,7 +71,7 @@ class Test_Square(unittest.TestCase):
             s1 = Square(-2, 2)
         self.assertEqual(str(errmsg.exception), "width must be > 0")
         with self.assertRaises(ValueError) as errmsg:
-             s1 = Square(2, -2)
+            s1 = Square(2, -2)
         self.assertEqual(str(errmsg.exception), "x must be >= 0")
         with self.assertRaises(ValueError) as errmsg:
             s1 = Square(2, 5, -4)
@@ -91,7 +89,7 @@ class Test_Square(unittest.TestCase):
 
     @staticmethod
     def display_output(obj):
-        """test the display of the rectangle"""
+        """capture the display of the rectangle in stdout"""
         with StringIO() as output:
             former_output = sys.stdout
             sys.stdout = output
@@ -102,100 +100,101 @@ class Test_Square(unittest.TestCase):
     def test_display(self):
         """test the display of the square"""
         d1 = Square(5, 0, 0, 4)
-        expected_output = "#####\n#####\n#####\n#####\n#####\n"
-        self.assertEqual(Test_Square.display_output(d1), expected_output)
+        ex_out = "#####\n#####\n#####\n#####\n#####\n"
+        self.assertEqual(Test_Square.display_output(d1), ex_out)
         d2 = Square(2, 0, 0, 4)
-        expected_output = "##\n##\n"
-        self.assertEqual(Test_Square.display_output(d2), expected_output)
+        ex_out = "##\n##\n"
+        self.assertEqual(Test_Square.display_output(d2), ex_out)
         d3 = Square(4, 3, 2, 5)
-        expected_output = "\n\n   ####\n   ####\n   ####\n   ####\n"
-        self.assertEqual(self.display_output(d3), expected_output)
+        ex_out = "\n\n   ####\n   ####\n   ####\n   ####\n"
+        self.assertEqual(self.display_output(d3), ex_out)
         d4 = Square(2, 3, 0, 5)
-        expected_output = "   ##\n   ##\n"
+        ex_out = "   ##\n   ##\n"
 
     @staticmethod
     def p_str(obj):
-        """capture the display of the square to stdout"""
+        """capture anything printed to stdout"""
         with StringIO() as output:
             former_output = sys.stdout
             sys.stdout = output
             print(obj)
             sys.stdout = former_output
-            return output.getvalue() 
+            return output.getvalue()
 
     def test_str(self):
         """test string implementation of square"""
         s1 = Square(1, 3, 4, 5)
-        expected_output = "[Square] (5) 3/4 - 1\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (5) 3/4 - 1\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1 = Square(5, 5, 1, id=6)
-        expected_output = "[Square] (6) 5/1 - 5\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (6) 5/1 - 5\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1 = Square(6, 5, id=6)
-        expected_output = "[Square] (6) 5/0 - 6\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (6) 5/0 - 6\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
+
     def test_arbitrary_args(self):
         """test arbitrary arguments"""
         s1 = Square(3, 5, 6, 7)
-        expected_output = "[Square] (7) 5/6 - 3\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (7) 5/6 - 3\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(89)
-        expected_output = "[Square] (89) 5/6 - 3\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (89) 5/6 - 3\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(20, 21, 21)
-        expected_output = "[Square] (20) 21/6 - 21\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (20) 21/6 - 21\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(1, 2, 2, 3, id=8)
-        expected_output = "[Square] (1) 2/3 - 2\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (1) 2/3 - 2\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(1, 2, 2, 3, 4)
-        expected_output = "[Square] (1) 2/3 - 2\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (1) 2/3 - 2\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update()
-        expected_output = "[Square] (1) 2/3 - 2\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (1) 2/3 - 2\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(9, 10, 11, 12, 13, 14, 15)
-        expected_output = "[Square] (9) 11/12 - 10\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (9) 11/12 - 10\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(9, 43)
-        expected_output = "[Square] (9) 11/12 - 43\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (9) 11/12 - 43\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
 
     def test_kwargs(self):
         """test arbitrary dictionary arguments"""
         s1 = Square(3, 4, 6, 7)
-        expected_output = "[Square] (7) 4/6 - 3\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (7) 4/6 - 3\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(id=89)
-        expected_output = "[Square] (89) 4/6 - 3\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (89) 4/6 - 3\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(id=20, size=21)
-        expected_output = "[Square] (20) 4/6 - 21\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (20) 4/6 - 21\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(id=1, size=2, x=5)
-        expected_output = "[Square] (1) 5/6 - 2\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (1) 5/6 - 2\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(id=1, size=2, x=4, y=5)
-        expected_output = "[Square] (1) 4/5 - 2\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (1) 4/5 - 2\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(id=9, size=10, x=12, y=13)
-        expected_output = "[Square] (9) 12/13 - 10\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (9) 12/13 - 10\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1.update(89, id=9, width=16, height=15)
-        expected_output = "[Square] (89) 12/13 - 10\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (89) 12/13 - 10\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
 
     def test_instance_attr(self):
         """test if the width and height has the same value"""
         s2 = Square(3, 4, 6, 5)
-        expected_output = "[Square] (5) 4/6 - 3\n"
-        self.assertEqual(Test_Square.p_str(s2), expected_output)
+        ex_out = "[Square] (5) 4/6 - 3\n"
+        self.assertEqual(Test_Square.p_str(s2), ex_out)
         s2.update(id=9, size=10, x=12, y=13)
         self.assertEqual(s2.size, 10)
         self.assertEqual(s2.height, 10)
         s3 = Square(3, id=1)
-        expected_output = "[Square] (1) 0/0 - 3\n"
-        self.assertEqual(Test_Square.p_str(s3), expected_output)
+        ex_out = "[Square] (1) 0/0 - 3\n"
+        self.assertEqual(Test_Square.p_str(s3), ex_out)
         self.assertEqual(s3.size, 3)
         s3.size = 4
         self.assertEqual(s3.size, 4)
@@ -203,55 +202,48 @@ class Test_Square(unittest.TestCase):
         self.assertEqual(s3.width, 4)
 
     def test_obj_to_dict(self):
+        """test is an instance is truly converted to a dict"""
         s1 = Square(1, 2, id=8)
-        expected_output = "[Square] (8) 2/0 - 1\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        ex_out = "[Square] (8) 2/0 - 1\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
         s1_dict = s1.to_dictionary()
         s2 = Square(1, 4, 5)
         s2 = Square(**s1_dict)
-        expected_output = "[Square] (8) 2/0 - 1\n"
-        self.assertEqual(Test_Square.p_str(s2), expected_output)
+        ex_out = "[Square] (8) 2/0 - 1\n"
+        self.assertEqual(Test_Square.p_str(s2), ex_out)
         self.assertNotEqual(s1, s2)
-        
 
     def test_json_string(self):
         """extract an instance from a json string"""
         s1 = Square(1, 2, id=23)
         s1_dict = s1.to_dictionary()
         json_dict = Square.to_json_string([s1_dict])
-        expected_output = json.dumps([{"size": 1, "x": 2, "y": 0, "id": 23}]) + '\n'
-        self.assertEqual(Test_Square.p_str(json_dict), expected_output)
-        expected_output = "<class 'str'>\n"
-        self.assertEqual(Test_Square.p_str(type(json_dict)), expected_output)
-        expected_output = "<class 'dict'>\n"
-        self.assertEqual(Test_Square.p_str(type(s1_dict)), expected_output)
+        ex_out = json.dumps([{"size": 1, "x": 2, "y": 0, "id": 23}]) + '\n'
+        self.assertEqual(Test_Square.p_str(json_dict), ex_out)
+        ex_out = "<class 'str'>\n"
+        self.assertEqual(Test_Square.p_str(type(json_dict)), ex_out)
+        ex_out = "<class 'dict'>\n"
+        self.assertEqual(Test_Square.p_str(type(s1_dict)), ex_out)
         s2 = Square(4, 5, 6, id=9)
         s2_dict = s2.to_dictionary()
         json_dict = Square.to_json_string([s1_dict, s2_dict])
-        expected_output = json.dumps([{"size": 1, "x": 2, "y": 0, "id": 23},
-                {"size": 4, "x": 5, "y": 6, "id": 9}]) + '\n'
-        self.assertEqual(Test_Square.p_str(json_dict), expected_output)
+        ex_out = json.dumps([
+            {"size": 1, "x": 2, "y": 0, "id": 23},
+            {"size": 4, "x": 5, "y": 6, "id": 9}]
+        ) + '\n'
+        self.assertEqual(Test_Square.p_str(json_dict), ex_out)
 
     def test_save_json_to_file(self):
         """test if truly json string representation is written to a file"""
         s1 = Square(2, 4, id=89)
         s2 = Square(3, 6, id=89)
         Square.save_to_file([s1, s2])
-        expected_output = json.dumps([{"size": 2, "x": 4, "y": 0, "id": 89},
-                                {"size": 3, "x": 6, "y": 0, "id": 89}]) + '\n'
+        ex_out = json.dumps([
+            {"size": 2, "x": 4, "y": 0, "id": 89},
+            {"size": 3, "x": 6, "y": 0, "id": 89}
+        ]) + '\n'
         with open("Square.json", "r", encoding="utf-8") as file_obj:
-            self.assertEqual(Test_Square.p_str(file_obj.read()), expected_output)
-
-        """s1 = Square(5, 7, id=89)
-        Square.save_to_file([s1, s2, s1])
-        expected_output = json.dumps([{"width": 2, "height": 4, "x": 0, "y": 0, "id": 89},
-                            {"width": 3, "height": 6, "x": 0, "y": 0, "id": 89},
-                            {"size": 5, "x": 7, "y": 0, "id": 89}]) + '\n'
-        with self.assertRaises(FileNotFoundError) as errmsg:
-            with open("Square.json", "r", encoding="utf-8") as file_obj:
-                self.assertEqual(Test_Square.p_str(file_obj.read()), expected_output)
-        self.assertEqual(str(errmsg.exception), "[Errno 2] No such file or directory: 'Square.json'")
-        """
+            self.assertEqual(Test_Square.p_str(file_obj.read()), ex_out)
 
     def test_from_json_string(self):
         """test if truly the original list is gotten from the json_string"""
@@ -262,12 +254,12 @@ class Test_Square(unittest.TestCase):
         list_input = [s1_dict, s2_dict]
         json_string = Square.to_json_string(list_input)
         json_list_output = Square.from_json_string(json_string)
-        expected_output = "<class 'list'>\n"
-        self.assertEqual(Test_Square.p_str(type(list_input)), expected_output)
-        expected_output = "<class 'str'>\n"
-        self.assertEqual(Test_Square.p_str(type(json_string)), expected_output)
-        expected_output = "<class 'list'>\n"
-        self.assertEqual(Test_Square.p_str(type(json_list_output)), expected_output)
+        ex_out = "<class 'list'>\n"
+        self.assertEqual(Test_Square.p_str(type(list_input)), ex_out)
+        ex_out = "<class 'str'>\n"
+        self.assertEqual(Test_Square.p_str(type(json_string)), ex_out)
+        ex_out = "<class 'list'>\n"
+        self.assertEqual(Test_Square.p_str(type(json_list_output)), ex_out)
         self.assertEqual(list_input, json_list_output)
         self.assertNotEqual(json_string, json_list_output)
 
@@ -276,10 +268,10 @@ class Test_Square(unittest.TestCase):
         s1 = Square(2, 4, id=89)
         s1_dict = s1.to_dictionary()
         s2 = Square.create(**s1_dict)
-        expected_output = "[Square] (89) 4/0 - 2\n"
-        self.assertEqual(Test_Square.p_str(s1), expected_output)
-        expected_output = "[Square] (89) 4/0 - 2\n"
-        self.assertEqual(Test_Square.p_str(s2), expected_output)
+        ex_out = "[Square] (89) 4/0 - 2\n"
+        self.assertEqual(Test_Square.p_str(s1), ex_out)
+        ex_out = "[Square] (89) 4/0 - 2\n"
+        self.assertEqual(Test_Square.p_str(s2), ex_out)
         self.assertIsNot(s1, s2)
 
     def test_create_instance_from_file(self):

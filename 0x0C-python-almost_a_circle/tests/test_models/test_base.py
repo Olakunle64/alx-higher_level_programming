@@ -2,8 +2,6 @@
 """This module is contains unittest to test a class called
     <Base>
     """
-
-
 import unittest
 from models.base import Base
 import json
