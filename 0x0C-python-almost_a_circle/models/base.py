@@ -80,3 +80,54 @@ class Base:
             for obj_dict in loaded_list:
                 new_list.append(cls.create(**obj_dict))
             return new_list
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """serialize a data into a csv file"""
+        filename = cls.__name__ + ".csv"
+        if list_objs is None or not list_objs:
+            with open(filename, "w", encoding="utf-8") as f:
+                f.write("\n")
+                return
+        with open(filename, "w", encoding="utf-8") as f:
+            if cls.__name__ == "Rectangle":
+                for obj in list_objs:
+                    csv_data = "{},{},{},{},{}\n".format(
+                        obj.id, obj.width, obj.height, obj.x, obj.y
+                    )
+                    f.write(csv_data)
+            elif cls.__name__ == "Square":
+                for obj in list_objs:
+                    csv_data = "{},{},{},{}\n".format(
+                        obj.id, obj.size, obj.x, obj.y
+                    )
+                    f.write(csv_data)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """deserialize a data from a csv file"""
+        dict_list = []
+        filename = cls.__name__ + ".csv"
+        if not os.path.exists(filename):
+            return dict_list
+        with open(filename, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        for line in lines:
+            splitted_lines = line.split(",")
+            if cls.__name__ == "Rectangle":
+                rect_dict = {}
+                obj_attr = ["id", "width", "height", "x", "y"]
+                i = 0
+                for item in splitted_lines:
+                    rect_dict[obj_attr[i]] = int(item)
+                    i += 1
+                dict_list.append(cls.create(**rect_dict))
+            elif cls.__name__ == "Square":
+                sqr_dict = {}
+                obj_attr = ["id", "size", "x", "y"]
+                i = 0
+                for item in splitted_lines:
+                    sqr_dict[obj_attr[i]] = int(item)
+                    i += 1
+                dict_list.append(cls.create(**sqr_dict))
+        return dict_list
