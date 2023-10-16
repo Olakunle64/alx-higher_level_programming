@@ -4,10 +4,13 @@
     """
 
 
+import json
 from models.rectangle import Rectangle
 import unittest
 from io import StringIO
 import sys
+from models.square import Square
+
 
 class Test_Rectangle(unittest.TestCase):
     """The following methods contains the
@@ -79,7 +82,7 @@ class Test_Rectangle(unittest.TestCase):
             V1 = Rectangle(2, -2)
         self.assertEqual(str(errmsg.exception), "height must be > 0")
         with self.assertRaises(ValueError) as errmsg:
-             V1 = Rectangle(2, 3, -2)
+            V1 = Rectangle(2, 3, -2)
         self.assertEqual(str(errmsg.exception), "x must be >= 0")
         with self.assertRaises(ValueError) as errmsg:
             V1 = Rectangle(2, 3, 5, -4)
@@ -96,7 +99,7 @@ class Test_Rectangle(unittest.TestCase):
 
     @staticmethod
     def display_output(obj):
-        """test the display of the rectangle"""
+        """capture the display of the rectangle to stdout"""
         with StringIO() as output:
             former_output = sys.stdout
             sys.stdout = output
@@ -105,21 +108,22 @@ class Test_Rectangle(unittest.TestCase):
             return output.getvalue()
 
     def test_display(self):
+        """test the display of the rectangle on stdout"""
         d1 = Rectangle(5, 2, 0, 0, 4)
-        expected_output = "#####\n#####\n"
-        self.assertEqual(Test_Rectangle.display_output(d1), expected_output)
+        ex_out = "#####\n#####\n"
+        self.assertEqual(Test_Rectangle.display_output(d1), ex_out)
         d2 = Rectangle(2, 4, 0, 0, 4)
-        expected_output = "##\n##\n##\n##\n"
-        self.assertEqual(Test_Rectangle.display_output(d2), expected_output)
+        ex_out = "##\n##\n##\n##\n"
+        self.assertEqual(Test_Rectangle.display_output(d2), ex_out)
         d3 = Rectangle(4, 2, 3, 2, 5)
-        expected_output = "\n\n   ####\n   ####\n"
-        self.assertEqual(self.display_output(d3), expected_output)
+        ex_out = "\n\n   ####\n   ####\n"
+        self.assertEqual(self.display_output(d3), ex_out)
         d4 = Rectangle(4, 2, 3, 0, 5)
-        expected_output = "   ####\n   ####\n"
-        self.assertEqual(self.display_output(d4), expected_output)
+        ex_out = "   ####\n   ####\n"
+        self.assertEqual(self.display_output(d4), ex_out)
         d5 = Rectangle(4, 2, y=3, x=0, id=5)
-        expected_output = "\n\n\n####\n####\n"
-        self.assertEqual(self.display_output(d5), expected_output)
+        ex_out = "\n\n\n####\n####\n"
+        self.assertEqual(self.display_output(d5), ex_out)
 
     @staticmethod
     def p_str(obj):
@@ -129,74 +133,153 @@ class Test_Rectangle(unittest.TestCase):
             sys.stdout = output
             print(obj)
             sys.stdout = former_output
-            return output.getvalue() 
+            return output.getvalue()
 
     def test_str(self):
+        """test the string implementation of rectangle"""
         s1 = Rectangle(1, 2, 3, 4, 5)
-        expected_output = "[Rectangle] (5) 3/4 - 1/2\n"
-        self.assertEqual(Test_Rectangle.p_str(s1), expected_output)
-        s1 = Rectangle(5, 5, 1, 2)
-        expected_output = "[Rectangle] (1) 1/2 - 5/5\n"
-        #self.assertEqual(Test_Rectangle.p_str(s1), expected_output)
-        s1 = Rectangle(5, 5)
-        expected_output = "[Rectangle] (2) 0/0 - 5/5\n"
-        #self.assertEqual(Test_Rectangle.p_str(s1), expected_output)
+        ex_out = "[Rectangle] (5) 3/4 - 1/2\n"
+        self.assertEqual(Test_Rectangle.p_str(s1), ex_out)
+        s1 = Rectangle(5, 5, 1, 2, 1)
+        ex_out = "[Rectangle] (1) 1/2 - 5/5\n"
+        self.assertEqual(Test_Rectangle.p_str(s1), ex_out)
+        s1 = Rectangle(5, 5, id=2)
+        ex_out = "[Rectangle] (2) 0/0 - 5/5\n"
+        self.assertEqual(Test_Rectangle.p_str(s1), ex_out)
+
     def test_arbitrary_args(self):
+        """test when abitrary arguments is given to the class"""
         r1 = Rectangle(3, 4, 5, 6, 7)
-        expected_output = "[Rectangle] (7) 5/6 - 3/4\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (7) 5/6 - 3/4\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(89)
-        expected_output = "[Rectangle] (89) 5/6 - 3/4\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (89) 5/6 - 3/4\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(20, 21)
-        expected_output = "[Rectangle] (20) 5/6 - 21/4\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (20) 5/6 - 21/4\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(1, 2, 3)
-        expected_output = "[Rectangle] (1) 5/6 - 2/3\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (1) 5/6 - 2/3\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(1, 2, 3, 4)
-        expected_output = "[Rectangle] (1) 4/6 - 2/3\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (1) 4/6 - 2/3\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(1, 2, 3, 4, 5)
-        expected_output = "[Rectangle] (1) 4/5 - 2/3\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (1) 4/5 - 2/3\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(9, 10, 11, 12, 13, 14, 15)
-        expected_output = "[Rectangle] (9) 12/13 - 10/11\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (9) 12/13 - 10/11\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
 
     def test_kwargs(self):
+        """"test when a key-worded argument is given to the class"""
         r1 = Rectangle(3, 4, 5, 6, 7)
-        expected_output = "[Rectangle] (7) 5/6 - 3/4\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (7) 5/6 - 3/4\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(id=89)
-        expected_output = "[Rectangle] (89) 5/6 - 3/4\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (89) 5/6 - 3/4\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(id=20, width=21)
-        expected_output = "[Rectangle] (20) 5/6 - 21/4\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (20) 5/6 - 21/4\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(id=1, width=2, height=3)
-        expected_output = "[Rectangle] (1) 5/6 - 2/3\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (1) 5/6 - 2/3\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(id=1, width=2, height=3, x=4)
-        expected_output = "[Rectangle] (1) 4/6 - 2/3\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (1) 4/6 - 2/3\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(id=1, width=2, height=3, x=4, y=5)
-        expected_output = "[Rectangle] (1) 4/5 - 2/3\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (1) 4/5 - 2/3\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(id=9, width=10, height=11, x=12, y=13)
-        expected_output = "[Rectangle] (9) 12/13 - 10/11\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (9) 12/13 - 10/11\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1.update(89, id=9, width=16, height=15)
-        expected_output = "[Rectangle] (89) 12/13 - 10/11\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (89) 12/13 - 10/11\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
 
     def test_obj_to_dict(self):
+        """test if an instance is truly converted to a dictionary"""
         r1 = Rectangle(1, 2, id=8)
-        expected_output = "[Rectangle] (8) 0/0 - 1/2\n"
-        self.assertEqual(Test_Rectangle.p_str(r1), expected_output)
+        ex_out = "[Rectangle] (8) 0/0 - 1/2\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
         r1_dict = r1.to_dictionary()
+        r2 = Rectangle(54, 78)
         r2 = Rectangle(**r1_dict)
-        expected_output = "[Rectangle] (8) 0/0 - 1/2\n"
-        self.assertEqual(Test_Rectangle.p_str(r2), expected_output)
+        ex_out = "[Rectangle] (8) 0/0 - 1/2\n"
+        self.assertEqual(Test_Rectangle.p_str(r2), ex_out)
         self.assertNotEqual(r1, r2)
-        
+
+    def test_json_string(self):
+        """extract an instance from a json string"""
+        r1 = Rectangle(1, 2, id=23)
+        r1_dict = r1.to_dictionary()
+        json_dict = Rectangle.to_json_string([r1_dict])
+        ex_out = json.dumps(
+                [{"width": 1, "height": 2, "x": 0, "y": 0, "id": 23}]) + '\n'
+        self.assertEqual(Test_Rectangle.p_str(json_dict), ex_out)
+        ex_out = "<class 'str'>\n"
+        self.assertEqual(Test_Rectangle.p_str(type(json_dict)), ex_out)
+        ex_out = "<class 'dict'>\n"
+        self.assertEqual(Test_Rectangle.p_str(type(r1_dict)), ex_out)
+        r2 = Rectangle(4, 5, 6, id=9)
+        r2_dict = r2.to_dictionary()
+        json_dict = Rectangle.to_json_string([r1_dict, r2_dict])
+        ex_out = json.dumps([
+            {"width": 1, "height": 2, "x": 0, "y": 0, "id": 23},
+            {"width": 4, "height": 5, "x": 6, "y": 0, "id": 9}
+        ]) + '\n'
+        self.assertEqual(Test_Rectangle.p_str(json_dict), ex_out)
+
+    def test_save_json_to_file(self):
+        """test if truly json string representation is written to a file"""
+        r1 = Rectangle(2, 4, id=89)
+        r2 = Rectangle(3, 6, id=89)
+        Rectangle.save_to_file([r1, r2])
+        ex_out = json.dumps([
+            {"width": 2, "height": 4, "x": 0, "y": 0, "id": 89},
+            {"width": 3, "height": 6, "x": 0, "y": 0, "id": 89}
+        ]) + '\n'
+        with open("Rectangle.json", "r", encoding="utf-8") as file_obj:
+            self.assertEqual(Test_Rectangle.p_str(file_obj.read()), ex_out)
+
+    def test_from_json_string(self):
+        """test if truly the original list is gotten from the json_string"""
+        r1 = Rectangle(2, 4, id=89)
+        r2 = Rectangle(3, 6, id=89)
+        r1_dict = r1.to_dictionary()
+        r2_dict = r2.to_dictionary()
+        list_input = [r1_dict, r2_dict]
+        json_string = Rectangle.to_json_string(list_input)
+        json_list_output = Rectangle.from_json_string(json_string)
+        ex_out = "<class 'list'>\n"
+        self.assertEqual(Test_Rectangle.p_str(type(list_input)), ex_out)
+        ex_out = "<class 'str'>\n"
+        self.assertEqual(Test_Rectangle.p_str(type(json_string)), ex_out)
+        ex_out = "<class 'list'>\n"
+        self.assertEqual(Test_Rectangle.p_str(type(json_list_output)), ex_out)
+        self.assertEqual(list_input, json_list_output)
+        self.assertNotEqual(json_string, json_list_output)
+
+    def test_instance_return(self):
+        """test if truly an instance with all attributes set is returned"""
+        r1 = Rectangle(2, 4, id=89)
+        r1_dict = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dict)
+        ex_out = "[Rectangle] (89) 0/0 - 2/4\n"
+        self.assertEqual(Test_Rectangle.p_str(r1), ex_out)
+        ex_out = "[Rectangle] (89) 0/0 - 2/4\n"
+        self.assertEqual(Test_Rectangle.p_str(r2), ex_out)
+        self.assertIsNot(r1, r2)
+
+    def test_create_instance_from_file(self):
+        """test if truly a list of an instance is returned"""
+        r1 = Rectangle(10, 7, 2, 8)
+        r1_dict = r1.to_dictionary()
+        r2 = Rectangle(2, 4)
+        r2_dict = r2.to_dictionary()
+        list_rectangle_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangle_input)
+        retrived_rectangles = Rectangle.load_from_file()
+        self.assertEqual(r1_dict, retrived_rectangles[0].to_dictionary())
+        self.assertEqual(r2_dict, retrived_rectangles[1].to_dictionary())

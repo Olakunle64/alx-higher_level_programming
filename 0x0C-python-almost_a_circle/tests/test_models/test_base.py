@@ -5,8 +5,9 @@
 
 
 import unittest
-#Base = __import__('../..base').Base
 from models.base import Base
+import json
+
 
 class Test_Base(unittest.TestCase):
     """Testcases for the function called <Base>"""
@@ -19,7 +20,7 @@ class Test_Base(unittest.TestCase):
         self.assertEqual(b2.id, 2)
         b1.id = 17
         self.assertEqual(b1.id, 17)
-    
+
     def test_id(self):
         """test when id is given"""
         b3 = Base(12)

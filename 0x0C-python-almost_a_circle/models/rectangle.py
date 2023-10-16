@@ -4,9 +4,8 @@
     It has 4 private instance attribute and one method.
     Each private instance attribute has a getter and a setter.
     """
-
-
 from models.base import Base
+
 
 class Rectangle(Base):
     """The Rectangle class
@@ -19,6 +18,7 @@ class Rectangle(Base):
 
     method: __init__()
     """
+
     def __init__(self, width, height, x=0, y=0, id=None):
         """initializing the private attribute"""
         super().__init__(id)
@@ -26,7 +26,6 @@ class Rectangle(Base):
         self.height = height
         self.x = x
         self.y = y
-        #super().__init__(id)
 
     @property
     def width(self):
@@ -97,9 +96,9 @@ class Rectangle(Base):
 
     def __str__(self):
         """string implementation"""
-        return str("[Rectangle] (" + str(self.id) + ") " + str(self.__x)
-                + "/" + str(self.__y) + " - "
-                + str(self.__width) + "/" + str(self.__height)
+        return (str("[Rectangle] (" + str(self.id) + ") " + str(self.__x)
+                    + "/" + str(self.__y) + " - "
+                    + str(self.__width) + "/" + str(self.__height))
                 )
 
     def update(self, *args, **kwargs):

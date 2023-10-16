@@ -8,6 +8,8 @@ from models.square import Square
 import unittest
 from io import StringIO
 import sys
+import json
+
 
 class Test_Square(unittest.TestCase):
     """The following methods contains the
@@ -200,3 +202,94 @@ class Test_Square(unittest.TestCase):
         self.assertEqual(s3.height, 4)
         self.assertEqual(s3.width, 4)
 
+    def test_obj_to_dict(self):
+        s1 = Square(1, 2, id=8)
+        expected_output = "[Square] (8) 2/0 - 1\n"
+        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        s1_dict = s1.to_dictionary()
+        s2 = Square(1, 4, 5)
+        s2 = Square(**s1_dict)
+        expected_output = "[Square] (8) 2/0 - 1\n"
+        self.assertEqual(Test_Square.p_str(s2), expected_output)
+        self.assertNotEqual(s1, s2)
+        
+
+    def test_json_string(self):
+        """extract an instance from a json string"""
+        s1 = Square(1, 2, id=23)
+        s1_dict = s1.to_dictionary()
+        json_dict = Square.to_json_string([s1_dict])
+        expected_output = json.dumps([{"size": 1, "x": 2, "y": 0, "id": 23}]) + '\n'
+        self.assertEqual(Test_Square.p_str(json_dict), expected_output)
+        expected_output = "<class 'str'>\n"
+        self.assertEqual(Test_Square.p_str(type(json_dict)), expected_output)
+        expected_output = "<class 'dict'>\n"
+        self.assertEqual(Test_Square.p_str(type(s1_dict)), expected_output)
+        s2 = Square(4, 5, 6, id=9)
+        s2_dict = s2.to_dictionary()
+        json_dict = Square.to_json_string([s1_dict, s2_dict])
+        expected_output = json.dumps([{"size": 1, "x": 2, "y": 0, "id": 23},
+                {"size": 4, "x": 5, "y": 6, "id": 9}]) + '\n'
+        self.assertEqual(Test_Square.p_str(json_dict), expected_output)
+
+    def test_save_json_to_file(self):
+        """test if truly json string representation is written to a file"""
+        s1 = Square(2, 4, id=89)
+        s2 = Square(3, 6, id=89)
+        Square.save_to_file([s1, s2])
+        expected_output = json.dumps([{"size": 2, "x": 4, "y": 0, "id": 89},
+                                {"size": 3, "x": 6, "y": 0, "id": 89}]) + '\n'
+        with open("Square.json", "r", encoding="utf-8") as file_obj:
+            self.assertEqual(Test_Square.p_str(file_obj.read()), expected_output)
+
+        """s1 = Square(5, 7, id=89)
+        Square.save_to_file([s1, s2, s1])
+        expected_output = json.dumps([{"width": 2, "height": 4, "x": 0, "y": 0, "id": 89},
+                            {"width": 3, "height": 6, "x": 0, "y": 0, "id": 89},
+                            {"size": 5, "x": 7, "y": 0, "id": 89}]) + '\n'
+        with self.assertRaises(FileNotFoundError) as errmsg:
+            with open("Square.json", "r", encoding="utf-8") as file_obj:
+                self.assertEqual(Test_Square.p_str(file_obj.read()), expected_output)
+        self.assertEqual(str(errmsg.exception), "[Errno 2] No such file or directory: 'Square.json'")
+        """
+
+    def test_from_json_string(self):
+        """test if truly the original list is gotten from the json_string"""
+        s1 = Square(2, 4, id=89)
+        s2 = Square(3, 6, id=89)
+        s1_dict = s1.to_dictionary()
+        s2_dict = s2.to_dictionary()
+        list_input = [s1_dict, s2_dict]
+        json_string = Square.to_json_string(list_input)
+        json_list_output = Square.from_json_string(json_string)
+        expected_output = "<class 'list'>\n"
+        self.assertEqual(Test_Square.p_str(type(list_input)), expected_output)
+        expected_output = "<class 'str'>\n"
+        self.assertEqual(Test_Square.p_str(type(json_string)), expected_output)
+        expected_output = "<class 'list'>\n"
+        self.assertEqual(Test_Square.p_str(type(json_list_output)), expected_output)
+        self.assertEqual(list_input, json_list_output)
+        self.assertNotEqual(json_string, json_list_output)
+
+    def test_instance_return(self):
+        """test if truly an instance with all attributes set is returned"""
+        s1 = Square(2, 4, id=89)
+        s1_dict = s1.to_dictionary()
+        s2 = Square.create(**s1_dict)
+        expected_output = "[Square] (89) 4/0 - 2\n"
+        self.assertEqual(Test_Square.p_str(s1), expected_output)
+        expected_output = "[Square] (89) 4/0 - 2\n"
+        self.assertEqual(Test_Square.p_str(s2), expected_output)
+        self.assertIsNot(s1, s2)
+
+    def test_create_instance_from_file(self):
+        """test if truly a list of an instance is returned"""
+        s1 = Square(10, 7, 2, 8)
+        s1_dict = s1.to_dictionary()
+        s2 = Square(2, 4)
+        s2_dict = s2.to_dictionary()
+        list_rectangle_input = [s1, s2]
+        Square.save_to_file(list_rectangle_input)
+        retrived_squares = Square.load_from_file()
+        self.assertEqual(s1_dict, retrived_squares[0].to_dictionary())
+        self.assertEqual(s2_dict, retrived_squares[1].to_dictionary())

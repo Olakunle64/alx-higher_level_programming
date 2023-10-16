@@ -3,9 +3,8 @@
 
     It inherit from the class called <Rectangle>
     """
-
-
 from models.rectangle import Rectangle
+
 
 class Square(Rectangle):
     """The class Square has two methods and several field
@@ -76,3 +75,7 @@ class Square(Rectangle):
                 i += 1
                 if i > 4:
                     break
+
+    def to_dictionary(self):
+        """return the dictionary representation of a Square"""
+        return {"size": self.size, "x": self.x, "y": self.y, "id": self.id}
