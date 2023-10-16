@@ -31,8 +31,9 @@ class Base:
         """convert list_dictionary to json string"""
         if not list_dictionaries or list_dictionaries is None:
             return json.dumps([])
-        if (all(isinstance(item, dict) for item in list_dictionaries)
-                and isinstance(list_dictionaries, list)):
+        if not isinstance(list_dictionaries, list):
+            return json.dumps([])
+        if all(isinstance(item, dict) for item in list_dictionaries):
             return json.dumps(list_dictionaries)
 
     @classmethod
