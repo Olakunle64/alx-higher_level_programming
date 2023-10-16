@@ -37,17 +37,15 @@ class Base:
     def save_to_file(cls, list_objs):
         """write json representation of list_objs to a file"""
         if list_objs is None:
-            with open(cls.__name__ + ".json", "w", encoding="utf-8")
-            as file_obj:
-                file_obj.write(Base.to_json_string([]))
+            with open(cls.__name__ + ".json", "w", encoding="utf-8") as f:
+                f.write(Base.to_json_string([]))
         else:
             if all(type(item) is cls for item in list_objs):
                 new_list = []
                 for obj in list_objs:
                     new_list.append(obj.to_dictionary())
-                with open(cls.__name__ + ".json", "w", encoding="utf-8")
-                as file_obj:
-                    file_obj.write(Base.to_json_string(new_list))
+                with open(cls.__name__ + ".json", "w", encoding="utf-8") as f:
+                    f.write(Base.to_json_string(new_list))
             else:
                 return
 
