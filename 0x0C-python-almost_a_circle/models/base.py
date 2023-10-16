@@ -65,7 +65,10 @@ class Base:
         """return an instance with all attributes set"""
         if not dictionary or dictionary is None:
             return None
-        dummy = cls(4, 6)
+        if cls.__name__ == "Rectangle":
+            dummy = cls(4, 6)
+        elif cls.__name__ == "Square":
+            dummy = cls(4)
         dummy.update(**dictionary)
         return dummy
 
