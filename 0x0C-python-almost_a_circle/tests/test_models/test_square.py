@@ -278,10 +278,22 @@ class Test_Square(unittest.TestCase):
         """test if truly a list of an instance is returned"""
         s1 = Square(10, 7, 2, 8)
         s1_dict = s1.to_dictionary()
-        s2 = Square(2, 4)
+        s2 = Square(2, 4, id=89)
         s2_dict = s2.to_dictionary()
         list_rectangle_input = [s1, s2]
         Square.save_to_file(list_rectangle_input)
         retrived_squares = Square.load_from_file()
+        self.assertEqual(s1_dict, retrived_squares[0].to_dictionary())
+        self.assertEqual(s2_dict, retrived_squares[1].to_dictionary())
+
+    def test_save_to_csv(self):
+        """test if truly the instance is saved to a csv file"""
+        s1 = Square(10, 7, 2, 8)
+        s1_dict = s1.to_dictionary()
+        s2 = Square(2, 4, id=89)
+        s2_dict = s2.to_dictionary()
+        list_square_input = [s1, s2]
+        Square.save_to_file_csv(list_square_input)
+        retrived_squares = Square.load_from_file_csv()
         self.assertEqual(s1_dict, retrived_squares[0].to_dictionary())
         self.assertEqual(s2_dict, retrived_squares[1].to_dictionary())

@@ -272,12 +272,24 @@ class Test_Rectangle(unittest.TestCase):
 
     def test_create_instance_from_file(self):
         """test if truly a list of an instance is returned"""
+        r1 = Rectangle(10, 7, 2, 8, id=89)
+        r1_dict = r1.to_dictionary()
+        r2 = Rectangle(2, 4, id=89)
+        r2_dict = r2.to_dictionary()
+        list_rectangle_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangle_input)
+        retrived_rectangles = Rectangle.load_from_file()
+        self.assertEqual(r1_dict, retrived_rectangles[0].to_dictionary())
+        self.assertEqual(r2_dict, retrived_rectangles[1].to_dictionary())
+
+    def test_save_to_csv(self):
+        """test if truly the instance is saved to a csv file"""
         r1 = Rectangle(10, 7, 2, 8)
         r1_dict = r1.to_dictionary()
         r2 = Rectangle(2, 4)
         r2_dict = r2.to_dictionary()
         list_rectangle_input = [r1, r2]
-        Rectangle.save_to_file(list_rectangle_input)
-        retrived_rectangles = Rectangle.load_from_file()
+        Rectangle.save_to_file_csv(list_rectangle_input)
+        retrived_rectangles = Rectangle.load_from_file_csv()
         self.assertEqual(r1_dict, retrived_rectangles[0].to_dictionary())
         self.assertEqual(r2_dict, retrived_rectangles[1].to_dictionary())
