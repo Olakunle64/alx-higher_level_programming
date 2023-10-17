@@ -244,6 +244,14 @@ class Test_Square(unittest.TestCase):
         ]) + '\n'
         with open("Square.json", "r", encoding="utf-8") as file_obj:
             self.assertEqual(Test_Square.p_str(file_obj.read()), ex_out)
+        Square.save_to_file(None)
+        ex_out = json.dumps([]) + '\n'
+        with open("Square.json", "r", encoding="utf-8") as file_obj:
+            self.assertEqual(Test_Square.p_str(file_obj.read()), ex_out)
+        Square.save_to_file([])
+        ex_out = json.dumps([]) + '\n'
+        with open("Square.json", "r", encoding="utf-8") as file_obj:
+            self.assertEqual(Test_Square.p_str(file_obj.read()), ex_out)
 
     def test_from_json_string(self):
         """test if truly the original list is gotten from the json_string"""
