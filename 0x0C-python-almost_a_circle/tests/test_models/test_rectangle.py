@@ -248,6 +248,12 @@ class Test_Rectangle(unittest.TestCase):
         ex_out = json.dumps([]) + '\n'
         with open("Rectangle.json", "r", encoding="utf-8") as file_obj:
             self.assertEqual(Test_Rectangle.p_str(file_obj.read()), ex_out)
+        Rectangle.save_to_file([Rectangle(2, 4, id=89)])
+        ex_out = json.dumps([
+            {"width": 2, "height": 4, "x": 0, "y": 0, "id": 89}
+        ]) + '\n'
+        with open("Rectangle.json", "r", encoding="utf-8") as file_obj:
+            self.assertEqual(Test_Rectangle.p_str(file_obj.read()), ex_out)
 
     def test_from_json_string(self):
         """test if truly the original list is gotten from the json_string"""
