@@ -33,20 +33,8 @@ class Base:
             return json.dumps([])
         if not isinstance(list_dictionaries, list):
             return json.dumps([])
-        my_keys = ["width", "height", "size", "x", "y", "id"]
-        n_list_dictionaries = []
-        for obj_dict in list_dictionaries:
-            flag = 0
-            for key in obj_dict.keys():
-                if key in my_keys:
-                    continue
-                else:
-                    flag = 1
-                    break
-            if flag != 1:
-                n_list_dictionaries.append(obj_dict)
-        if all(isinstance(item, dict) for item in n_list_dictionaries):
-            return json.dumps(n_list_dictionaries)
+        if all(isinstance(item, dict) for item in list_dictionaries):
+            return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
