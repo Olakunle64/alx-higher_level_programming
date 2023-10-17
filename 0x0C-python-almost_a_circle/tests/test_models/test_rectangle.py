@@ -229,7 +229,7 @@ class Test_Rectangle(unittest.TestCase):
         ]) + '\n'
         self.assertEqual(Test_Rectangle.p_str(json_dict), ex_out)
 
-    def test_save_json_to_file(self):
+    def test_save_to_file(self):
         """test if truly json string representation is written to a file"""
         r1 = Rectangle(2, 4, id=89)
         r2 = Rectangle(3, 6, id=89)
