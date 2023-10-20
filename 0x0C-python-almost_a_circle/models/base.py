@@ -166,7 +166,7 @@ class Base:
                 t.forward(rectangle.height)
                 t.left(90)
                 t.pendown()
-        if list_squares is not None and list_rectangles:
+        if list_squares is not None and list_squares:
             for square in list_squares:
                 t.penup()
                 t.right(90)
