@@ -136,3 +136,57 @@ class Base:
                     i += 1
                 dict_list.append(cls.create(**sqr_dict))
         return dict_list
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """draw rectangles and squares with turtle"""
+        t = turtle.Turtle()
+        t.color = ("blue", "red")
+        t.getscreen().bgcolor("yellow")
+        if list_rectangles is not None and list_rectangles:
+            for rectangle in list_rectangles:
+                t.penup()
+                t.right(90)
+                t.forward(rectangle.y)
+                t.left(90)
+                t.forward(rectangle.x)
+                t.pendown()
+                t.begin_fill()
+                t.forward(rectangle.width)
+                t.right(90)
+                t.forward(rectangle.height)
+                t.right(90)
+                t.forward(rectangle.width)
+                t.right(90)
+                t.forward(rectangle.height)
+                t.right(90)
+                t.right(90)
+                t.end_fill
+                t.penup()
+                t.forward(rectangle.height)
+                t.left(90)
+                t.pendown()
+        if list_squares is not None and list_rectangles:
+            for square in list_squares:
+                t.penup()
+                t.right(90)
+                t.forward(square.y)
+                t.left(90)
+                t.forward(square.x)
+                t.pendown()
+                t.begin_fill()
+                t.forward(square.width)
+                t.right(90)
+                t.forward(square.height)
+                t.right(90)
+                t.forward(square.width)
+                t.right(90)
+                t.forward(square.height)
+                t.right(90)
+                t.right(90)
+                t.end_fill
+                t.penup()
+                t.forward(square.height)
+                t.left(90)
+                t.pendown()
+        t.done()
