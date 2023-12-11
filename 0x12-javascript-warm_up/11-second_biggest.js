@@ -8,18 +8,10 @@ if (process.argv.length <= 3) {
   let i = 2;
   while (process.argv[i]) {
     if (Number(process.argv[i]) > max) {
-      max = i;
-    }
-    i++;
-  }
-  i = 2;
-  while (process.argv[i]) {
-    if (i === max) {
-      i++;
-      continue;
-    }
-    if (Number(process.argv[i]) > smax) {
-      smax = Number(process.argv[i]);
+      smax = max;
+      max = Number(process.argv[i]);
+    } else if (process.argv[i] > smax && process.argv[i] < max) {
+      smax = process.argv[i];
     }
     i++;
   }
