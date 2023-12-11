@@ -6,4 +6,7 @@ function factorial (num) {
   }
   return (num * factorial(num - 1));
 }
-console.log(factorial(Number(process.argv[2])));
+number = Number(process.argv[2])
+if (number) {
+	console.log(factorial(number));
+}
