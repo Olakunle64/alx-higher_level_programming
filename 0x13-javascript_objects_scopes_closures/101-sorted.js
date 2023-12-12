@@ -5,8 +5,8 @@
  */
 
 dict = require('./101-data').dict
-
+big_dict = {}
 for (const key in dict) {
 	if (dict.hasOwnProperty(key)) {
 		const value = dict[key];
-		newDict[
+		if
