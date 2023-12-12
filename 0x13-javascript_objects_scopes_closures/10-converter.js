@@ -5,7 +5,7 @@
  */
 
 exports.converter = function (base) {
-  newBase = parseInt(base, baseNumber);
-  return newBase;
+  return function (num) {
+    return parseInt(num, base);
+  };
 };
-const baseNumber = base;
