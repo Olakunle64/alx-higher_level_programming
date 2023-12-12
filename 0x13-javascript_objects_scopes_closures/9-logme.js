@@ -4,7 +4,7 @@
  * printed and the new argument value
  */
 
-let counter = 0;
+let counter = -1;
 
 exports.logMe = function (item) {
   counter++;
