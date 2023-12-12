@@ -5,7 +5,6 @@
 const Rectangle = require('./4-rectangle');
 
 module.exports = class Square extends Rectangle {
-  size;
   constructor (size) {
     /* initialize instance attribute in both classes */
     super(size, size);
