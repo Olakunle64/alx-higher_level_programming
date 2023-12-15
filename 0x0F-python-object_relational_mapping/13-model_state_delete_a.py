@@ -2,7 +2,7 @@
 """Write a script that lists all State objects from the
     database hbtn_0e_6_usa using SQLAlchemy ORM
 
-    Note: change a particular state name to another one
+    Note: delete State objects that contains letter <a>
     """
 
 from model_state import Base, State
@@ -20,6 +20,7 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    state_obj = session.query(State).filter(State.id == 2).first()
-    state_obj.name = 'New Mexico'
+    state_objs = session.query(State).where(State.name.like('%a%'))
+    for obj in state_objs:
+        session.delete(obj)
     session.commit()
