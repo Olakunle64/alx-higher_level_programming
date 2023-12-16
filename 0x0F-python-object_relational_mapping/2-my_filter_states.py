@@ -20,7 +20,7 @@ if __name__ == "__main__":
     db = MySQLdb.connect(host="localhost", port=3306,
                          user=username, passwd=pwd, db=db_name)
     cur = db.cursor()
-    cur.execute("SELECT * FROM states WHERE name='{}' ORDER BY\
+    cur.execute("SELECT * FROM states WHERE BINARY name='{}' ORDER BY\
                 states.id ASC".format(searched_name))
     states = cur.fetchall()
     for state in states:

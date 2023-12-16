@@ -5,11 +5,11 @@
     Note: add an object to the database
     """
 
-from relationship_city import City, State, Base
 import sys
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import (create_engine)
-
+from relationship_state import Base, State
+from relationship_city import City
 
 if __name__ == "__main__":
     username = sys.argv[1]
@@ -21,7 +21,6 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    city_obj = City(name='San Francisco')
-    state_obj = State(name='California', cities=[city_obj])
+    state_obj = State(name='California', cities=[City(name='San Francisco')])
     session.add(state_obj)
     session.commit()

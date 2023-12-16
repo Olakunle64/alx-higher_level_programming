@@ -20,7 +20,7 @@ if __name__ == "__main__":
                          passwd=pwd, db=db_name)
     cur = db.cursor()
     pattern = "N%"
-    cur.execute("SELECT * FROM states WHERE\
+    cur.execute("SELECT * FROM states WHERE BINARY\
                 name LIKE %s ORDER BY states.id ASC", (pattern,))
     states = cur.fetchall()
     for state in states:
