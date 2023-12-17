@@ -24,5 +24,5 @@ if __name__ == "__main__":
     session = Session()
     for s in session.query(State).order_by(State.id).all():
         print("{}: {}".format(s.id, s.name))
-        for c in s.cities:
+        for c in sorted(s.cities, key=lambda x: x.id):
             print("{}{}: {}".format("    ", c.id, c.name))
