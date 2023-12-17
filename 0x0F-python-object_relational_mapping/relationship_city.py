@@ -10,19 +10,6 @@ from sqlalchemy.orm import relationship
 Base = declarative_base()
 
 
-class State(Base):
-    """A class which is assign a table in MYSQL database
-
-    It's has two class attributes(id and name)
-    """
-    __tablename__ = 'states'
-    id = Column(Integer, primary_key=True, unique=True,
-                nullable=False, autoincrement=True)
-    name = Column(String(128), nullable=False)
-    cities = relationship(
-            'City', cascade='all, delete-orphan', back_populates='state')
-
-
 class City(Base):
     """A class which is assign a table in MYSQL database
 
@@ -35,8 +22,4 @@ class City(Base):
                 nullable=False, autoincrement=True)
     name = Column(String(128), nullable=False)
     state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
-    state = relationship('State', back_populates='cities')
-
-
-#State.cities = relationship(
-#        'City', cascade='all, delete-orphan', back_populates='state')
+    state = relationship("State", back_populates="cities")
