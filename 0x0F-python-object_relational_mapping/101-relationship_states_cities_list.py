@@ -26,4 +26,4 @@ if __name__ == "__main__":
     for s in all_states:
         print("{}: {}".format(s.id, s.name))
         for c in sorted(s.cities, key=lambda x: x.id):
-            print("{}{}: {}".format("    ", c.id, c.name))
+            print("\t{}: {}".format(c.id, c.name))
