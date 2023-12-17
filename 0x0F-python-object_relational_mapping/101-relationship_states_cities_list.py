@@ -25,4 +25,4 @@ if __name__ == "__main__":
     for s in session.query(State).join(City).order_by(State.id, City.id).all():
         print("{}: {}".format(s.id, s.name))
         for c in s.cities:
-            print("    {}: {}".format(c.id, c.name))
+            print("{}{}: {}".format("\t", c.id, c.name))
