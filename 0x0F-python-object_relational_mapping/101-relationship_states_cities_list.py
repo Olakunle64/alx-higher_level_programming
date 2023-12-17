@@ -25,5 +25,7 @@ if __name__ == "__main__":
     all_states = session.query(State).order_by(State.id).all()
     for s in all_states:
         print("{}: {}".format(s.id, s.name))
-        for c in sorted(s.cities, key=lambda x: x.id):
+        for c in s.cities:
             print("\t{}: {}".format(c.id, c.name))
+    session.commit()
+    session.close()
