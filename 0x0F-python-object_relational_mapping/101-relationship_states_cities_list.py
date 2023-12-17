@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Write a script that lists all State objects from the
-    database hbtn_0e_6_usa using SQLAlchemy ORM
+"""Write a script that lists all State objects with
+    the city associated to it from the
+    database hbtn_0e_101_usa using SQLAlchemy ORM
 
-    Note: add an object to the database
     """
 
 import sys
@@ -27,3 +27,5 @@ if __name__ == "__main__":
         print("{}: {}".format(s.id, s.name))
         for c in s.cities:
             print("\t{}: {}".format(c.id, c.name))
+    session.commit()
+    session.close()
