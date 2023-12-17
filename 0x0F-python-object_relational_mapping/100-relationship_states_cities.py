@@ -6,7 +6,7 @@
     """
 
 import sys
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import (create_engine)
 from relationship_city import City
 from relationship_state import Base, State
