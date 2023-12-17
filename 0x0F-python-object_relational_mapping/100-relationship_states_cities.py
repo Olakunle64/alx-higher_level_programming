@@ -25,3 +25,4 @@ if __name__ == "__main__":
     state_obj = State(name='California', cities=[City(name='San Francisco')])
     session.add(state_obj)
     session.commit()
+    session.close()
