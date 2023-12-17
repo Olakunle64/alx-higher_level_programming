@@ -27,5 +27,3 @@ if __name__ == "__main__":
         print("{}: {}".format(s.id, s.name))
         for c in s.cities:
             print("\t{}: {}".format(c.id, c.name))
-    session.commit()
-    session.close()
