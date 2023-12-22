@@ -8,7 +8,7 @@
 import sys
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import (create_engine)
-from relationship_state import Base, State
+from relationship_state import State, Base
 
 
 if __name__ == "__main__":
