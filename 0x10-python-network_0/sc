@@ -1,0 +1,11 @@
+i=2
+awk '/Allow:/ {
+    while (i > 0) {
+        if [ -z "{$i}" ]; then
+            break
+        fi
+        print $i
+        i = i + 1;
+    }
+}' test
+
