@@ -1,3 +1,3 @@
 #!/bin/bash
 # Display the body of a 200 ok response
-body=$(curl -s "$1") && echo "$body"
+statusCode=$(curl -sI "$1" | awk '/HTTP/ {print $2}') && [ "$statusCode" -eq 200 ] && curl -s "$1"
