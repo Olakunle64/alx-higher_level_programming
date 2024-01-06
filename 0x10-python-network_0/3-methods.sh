@@ -1,3 +1,3 @@
 #!/bin/bash
 # list all available request methods available on the server
-methods=$(curl -si -X OPTIONS "$1" | awk '/Allow:/ {print $2, $3, $4, $5}'); echo "$methods"
+curl -si -X OPTIONS "$1" | grep "Allow" | awk -F ": " '{print $2}'
