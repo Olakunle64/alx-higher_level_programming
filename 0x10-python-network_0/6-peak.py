@@ -21,7 +21,7 @@ def find_peak(list_of_integers):
             maxi = list_of_integers[i]
         if list_of_integers[i] >= maxi:
             maxi = list_of_integers[i]
-        elif i + 1 < length:
+        if i + 1 < length:
             if maxi > list_of_integers[i + 1]:
                 return maxi
         i += 1
