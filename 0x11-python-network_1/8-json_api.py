@@ -19,11 +19,11 @@ if __name__ == "__main__":
     body = response.text
     if not body:
         print("No result")
-        return
-    try:
-        dict_body = body.json()
-        id = dict_body.get("id")
-        name = dict_body.get("name")
-        print(f'[{id}] {name}')
-    except json.JSONDecodeError:
-        print("Not a valid JSON")
+    else:
+        try:
+            dict_body = body.json()
+            id = dict_body.get("id")
+            name = dict_body.get("name")
+            print(f'[{id}] {name}')
+        except json.JSONDecodeError:
+            print("Not a valid JSON")
