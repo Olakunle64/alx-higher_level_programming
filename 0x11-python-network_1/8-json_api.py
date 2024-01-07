@@ -15,15 +15,16 @@ if __name__ == "__main__":
         q = ""
     else:
         q = sys.argv[1]
-    response = requests.post(url, params={'q': q})
+    response = requests.post(url, data={'q': q})
     body = response.text
-    if not body:
-        print("No result")
     else:
         try:
             dict_body = body.json()
-            id = dict_body.get("id")
-            name = dict_body.get("name")
-            print(f'[{id}] {name}')
+            if not dict_body:
+                print("No result")
+            else:
+                id = dict_body.get("id")
+                name = dict_body.get("name")
+                print(f'[{id}] {name}')
         except json.JSONDecodeError:
             print("Not a valid JSON")
