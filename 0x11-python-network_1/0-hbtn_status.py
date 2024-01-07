@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" This module contains a script that fetches https://alx-intranet.hbtn.io/status
+""" This module contains a script that fetches
+    https://alx-intranet.hbtn.io/status
     """
 
 
