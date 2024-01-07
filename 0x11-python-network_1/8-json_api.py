@@ -8,7 +8,6 @@
 if __name__ == "__main__":
     import requests
     import sys
-    import json
 
     url = "http://0.0.0.0:5000/search_user"
     if not sys.argv[1]:
@@ -26,5 +25,5 @@ if __name__ == "__main__":
                 id = dict_body.get("id")
                 name = dict_body.get("name")
                 print(f'[{id}] {name}')
-        except json.JSONDecodeError:
+        except Exception:
             print("Not a valid JSON")
